@@ -10,3 +10,6 @@ build/
 
 # Lib Folder #
 lib/
+
+# NetBeans Folder #
+nbproject/

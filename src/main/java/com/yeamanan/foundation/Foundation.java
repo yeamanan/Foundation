@@ -1,14 +1,28 @@
 package com.yeamanan.foundation;
 
-import java.io.IOException;
+//import java.io.File;
+//import java.util.jar.JarFile;
 import org.apache.log4j.Logger;
 
+/**
+ * Foundation class.
+ * @author Yeam Anan (<yeamanan@gmail.com>)
+ */
 public class Foundation {
 
-    static Logger logger = Logger.getLogger(Foundation.class);
+    /**
+     * Logger variable.
+     */
+    private static final Logger LOGGER = Logger.getLogger(Foundation.class);
 
-    public static void main(String[] args) throws IOException {
-        logger.info(Foundation.class.getPackage().getName());
+    /**
+     * Main() method.
+     * @param args Arguments
+     */
+    public static void main(final String[] args) {
+        //JarFile jarFile = new JarFile(new File());
+        //Properties prop = System.getProperties();
+        LOGGER.info(Foundation.class.getPackage().getName());
     }
 
 }

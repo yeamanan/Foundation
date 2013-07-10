@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class FoundationTest {
 
-	@Test
+    @Test
     public void testTrue() {
         assertTrue(true);
     }

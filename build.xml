@@ -11,13 +11,13 @@
   <property name="lib.dir" value="lib"/>
   <property name="build.dir" value="build"/>
   <property name="classes.dir" value="${build.dir}/classes"/>
-  <property name="tests.dir" value="${build.dir}/tests"/>
+  <property name="test.dir" value="${build.dir}/test"/>
   <property name="jar.dir" value="${build.dir}/jar"/>
   <property name="report.dir" value="${build.dir}/report"/>
   <!-- -->
 
   <!-- Main class of the project -->
-  <property name="main-class"  value="com.yeamanan.foundation.Foundation"/>
+  <property name="main-class"  value="com.yeamanan.foundation.system.GetProperties"/>
   <!-- -->
   
   <!-- Path of the classpath -->
@@ -31,7 +31,7 @@
   <!-- -->
 
   <!-- Path of the test file -->
-  <path id="tests" location="${tests.dir}/"/>
+  <path id="test" location="${test.dir}/"/>
   <!-- -->
 
   <!-- Delete the build directory -->
@@ -45,7 +45,7 @@
     <mkdir dir="${lib.dir}"/>
     <mkdir dir="${build.dir}"/>
     <mkdir dir="${classes.dir}"/>
-    <mkdir dir="${tests.dir}"/>
+    <mkdir dir="${test.dir}"/>
     <mkdir dir="${jar.dir}"/>
     <mkdir dir="${report.dir}"/>
   </target>
@@ -60,13 +60,13 @@
   <!-- -->
 
   <!-- Compile the main sources -->
-  <target name="compile" depends="resources">
+  <target name="build" depends="resources">
     <javac srcdir="${src.main.dir}" destdir="${classes.dir}" classpathref="classpath" includeantruntime="false"/>
   </target>
   <!-- -->
 
   <!-- Archive the application -->
-  <target name="jar" depends="compile">
+  <target name="jar" depends="build">
     <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}">
       <manifest>
         <attribute name="Main-Class" value="${main-class}"/>
@@ -87,17 +87,17 @@
   <!-- -->
 
 <!-- JUnit -->
-  <!-- Copy the tests' resources in the tests' build folder -->
-  <target name="resources-tests">
-    <copy todir="${tests.dir}">
+  <!-- Copy the test's resources in the test's build folder -->
+  <target name="resources-test">
+    <copy todir="${test.dir}">
       <fileset dir="${rsc.test.dir}"/>
     </copy>
   </target>
   <!-- -->
 
-  <!-- Compile the tests' sources -->
-  <target name="compile-tests" depends="resources-tests">
-    <javac srcdir="${src.test.dir}" destdir="${tests.dir}" includeantruntime="false">
+  <!-- Compile the test's sources -->
+  <target name="build-test" depends="resources-test">
+    <javac srcdir="${src.test.dir}" destdir="${test.dir}" includeantruntime="false">
       <classpath>
         <path refid="classpath"/>
         <path refid="application"/>
@@ -106,13 +106,13 @@
   </target>
   <!-- -->
 
-  <!-- Run JUnit tests-->
-  <target name="junit" depends="compile-tests">
+  <!-- Run JUnit test -->
+  <target name="test" depends="build-test">
     <junit printsummary="yes">
       <classpath>
         <path refid="classpath"/>
         <path refid="application"/>
-        <path refid="tests"/>
+        <path refid="test"/>
       </classpath>
       <formatter type="xml"/>
       <batchtest fork="yes" todir="${report.dir}">
@@ -123,7 +123,7 @@
   <!-- -->
 
   <!-- Build JUnit report -->
-  <target name="report" depends="junit">
+  <target name="report" depends="test">
     <junitreport todir="${report.dir}">
       <fileset dir="${report.dir}" includes="TEST-*.xml"/>
       <report todir="${report.dir}"/>
