@@ -4,3 +4,9 @@
 *.jar
 *.war
 *.ear
+
+# Build Folder #
+build/
+
+# Lib Folder #
+lib/
