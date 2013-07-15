@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 
 /**
  * GetProperties Class.
+ *
  * @author Yeam Anan (<yeamanan@gmail.com>)
  */
 public class SystemProperties {
@@ -17,6 +18,7 @@ public class SystemProperties {
 
     /**
      * Main() method.
+     *
      * @param args Arguments
      */
     public static void main(final String[] args) {
@@ -25,5 +27,4 @@ public class SystemProperties {
             LOGGER.info(key + " = " + properties.getProperty(key));
         }
     }
-
 }
